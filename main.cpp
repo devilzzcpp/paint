@@ -1,0 +1,122 @@
+//========================================================================
+//! @file       Main.cpp
+//{=======================================================================
+//!
+//! @brief      <Заголовок>\n
+//! @brief      <Подзаголовок>
+//!
+//! @version    [Version 0.01 alpha, build 1]
+//! @author     Copyright (C) <Автор>, <Год> (<Имя> <Почта>)
+//! @date       <Дата>
+//!
+//! @par        Протестировано
+//!           - (TODO: список платформ)
+//!
+//! @todo     - (TODO: список ближайших планов по этому файлу)
+//!
+//! @bug      - (TODO: список найденных ошибок в этом файле)
+//!
+//! @par        История изменений файла
+//!           - Версия 0.01 Alpha
+//!             - Только что созданный файл
+//!
+//}=======================================================================
+
+#include "TXLib.h"
+#include <iostream>
+
+
+int x=0;
+int y=0;
+int xr=100;
+int yr=100;
+int zx=0;
+int buttonssquare=1;
+
+HDC mark=txLoadImage ("dev.bmp"); //пикча
+
+
+class print //класс для рисования фигур
+{
+private:
+
+ int x2, y2;
+
+
+
+public:
+
+  int draw=0;
+  int x=0, y=0;         //верхний левый угол
+  int xr=1, yr=1;       //нижний правый угол
+  int cvet=TX_WHITE;    //основной цвет квадрата
+  int cvetobv=TX_GRAY;  //цвет обводки квадрата
+  int obv=7;            //размер обводки квадрата
+
+string name;
+
+int drawsquare()
+{
+    if (txMouseButtons()==1)
+     {
+      draw=1;
+      x=txMouseX();
+      y=txMouseY();
+     }
+
+     while(txMouseButtons() == 1)
+     {
+       txBegin;
+      xr=txMouseX();
+      yr=txMouseY();
+      txSetFillColor(cvet);
+      txSetColor(cvetobv, obv);
+    txRectangle(x, y, xr, yr);
+    txSleep(50);
+     txEnd;
+
+     }
+
+
+ txSetFillColor(cvet);
+ txSetColor(cvetobv, obv);
+ txRectangle(x, y, xr, yr);
+
+}
+
+}      ;
+
+
+int main()
+    {
+
+    txCreateWindow (800, 600);
+    txSetColor     (TX_BLACK);
+
+    print sq;
+
+while(1)
+{
+txSetFillColor(TX_BLACK);
+txClear();
+txBegin();
+
+/*
+          txSetFillColor (TX_DARKGRAY); Win32::RoundRect (txDC(), 105, 205, 705, 405, 30, 30);
+          txSetFillColor (TX_WHITE);    Win32::RoundRect (txDC(), 100, 200, 700, 400, 30, 30);
+
+          txSelectFont ("Arial", 20, 0, FW_BOLD);
+          txDrawText   (100, 250, 700, 350, "click here!");
+*/
+
+//if (txMouseButtons()==1 && txMouseX>100 && txMouseY>250 && txMouseX<700 && txMouseY<350){buttonssquare=1;} ,бета тест
+if (sq.draw||txMouseButtons()==1||buttonssquare==1) sq.drawsquare();
+
+
+
+
+txEnd();
+}
+    return 0;
+    }
+
