@@ -1,0 +1,80 @@
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\user\Documents\Губайдуллин Раис 2 год\main\bin\Debug\painter.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13128, функция: HPEN__* {anonymous}::TX::txSetColor(COLORREF, double, HDC),
+
+Сообщение: Окно рисования не создано или не в порядке.
+Если вы указали параметр "dc", то он неверен.
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400], Instance: 0x004F32FC (32-bit), Flags: Cmdre0, Thread: 0x1E08 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00411E87 in C:\Users\user\Documents\Губайдуллин Раис 2 год\main\bin\Debug\painter.exe: txSetColor() at c:/codeblocks/codeblocks/mingw/include/txlib.h (13128)
+
+# 1 0x0041C40E in C:\Users\user\Documents\Губайдуллин Раис 2 год\main\bin\Debug\painter.exe: main() at C:/Users/user/Documents/Губайдуллин Раис 2 год/main/main.cpp (29):
+
+     27: int main()
+     28:     {
+=>   29:     txSetColour(TX_WHITE);
+     30:     txCreateWindow (800, 600);
+     31: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Sep 28 2022 17:50:41, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Sep 28 2022 17:50:56
+
+Run file:	C:\Users\user\Documents\Губайдуллин Раис 2 год\main\bin\Debug\painter.exe
+Directory:	C:\Users\user\Documents\Губайдуллин Раис 2 год\main
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\user\Documents\Губайдуллин Раис 2 год\main\bin\Debug\painter.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13180, функция: HBRUSH__* {anonymous}::TX::txSetFillColor(COLORREF, HDC),
+
+Сообщение: Окно рисования не создано или не в порядке.
+Если вы указали параметр "dc", то он неверен.
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400], Instance: 0x004F32FC (32-bit), Flags: Cmdre0, Thread: 0xC38 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004123B0 in C:\Users\user\Documents\Губайдуллин Раис 2 год\main\bin\Debug\painter.exe: txSetFillColor() at c:/codeblocks/codeblocks/mingw/include/txlib.h (13180)
+
+# 1 0x0041C408 in C:\Users\user\Documents\Губайдуллин Раис 2 год\main\bin\Debug\painter.exe: main() at C:/Users/user/Documents/Губайдуллин Раис 2 год/main/main.cpp (29):
+
+     27: int main()
+     28:     {
+=>   29: txSetFillColour(TX_WHITE);
+     30:     txCreateWindow (800, 600);
+     31: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Sep 28 2022 17:51:49, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Sep 28 2022 17:52:03
+
+Run file:	C:\Users\user\Documents\Губайдуллин Раис 2 год\main\bin\Debug\painter.exe
+Directory:	C:\Users\user\Documents\Губайдуллин Раис 2 год\main
+
+--------------------------------------------------
