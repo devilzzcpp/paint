@@ -2,23 +2,23 @@
 //! @file       Main.cpp
 //{=======================================================================
 //!
-//! @brief      <Çàãîëîâîê>\n
-//! @brief      <Ïîäçàãîëîâîê>
+//! @brief      <Ã‡Ã Ã£Ã®Ã«Ã®Ã¢Ã®Ãª>\n
+//! @brief      <ÃÃ®Ã¤Ã§Ã Ã£Ã®Ã«Ã®Ã¢Ã®Ãª>
 //!
 //! @version    [Version 0.01 alpha, build 1]
-//! @author     Copyright (C) <Àâòîð>, <Ãîä> (<Èìÿ> <Ïî÷òà>)
-//! @date       <Äàòà>
+//! @author     Copyright (C) <Ã€Ã¢Ã²Ã®Ã°>, <ÃƒÃ®Ã¤> (<ÃˆÃ¬Ã¿> <ÃÃ®Ã·Ã²Ã >)
+//! @date       <Ã„Ã Ã²Ã >
 //!
-//! @par        Ïðîòåñòèðîâàíî
-//!           - (TODO: ñïèñîê ïëàòôîðì)
+//! @par        ÃÃ°Ã®Ã²Ã¥Ã±Ã²Ã¨Ã°Ã®Ã¢Ã Ã­Ã®
+//!           - (TODO: Ã±Ã¯Ã¨Ã±Ã®Ãª Ã¯Ã«Ã Ã²Ã´Ã®Ã°Ã¬)
 //!
-//! @todo     - (TODO: ñïèñîê áëèæàéøèõ ïëàíîâ ïî ýòîìó ôàéëó)
+//! @todo     - (TODO: Ã±Ã¯Ã¨Ã±Ã®Ãª Ã¡Ã«Ã¨Ã¦Ã Ã©Ã¸Ã¨Ãµ Ã¯Ã«Ã Ã­Ã®Ã¢ Ã¯Ã® Ã½Ã²Ã®Ã¬Ã³ Ã´Ã Ã©Ã«Ã³)
 //!
-//! @bug      - (TODO: ñïèñîê íàéäåííûõ îøèáîê â ýòîì ôàéëå)
+//! @bug      - (TODO: Ã±Ã¯Ã¨Ã±Ã®Ãª Ã­Ã Ã©Ã¤Ã¥Ã­Ã­Ã»Ãµ Ã®Ã¸Ã¨Ã¡Ã®Ãª Ã¢ Ã½Ã²Ã®Ã¬ Ã´Ã Ã©Ã«Ã¥)
 //!
-//! @par        Èñòîðèÿ èçìåíåíèé ôàéëà
-//!           - Âåðñèÿ 0.01 Alpha
-//!             - Òîëüêî ÷òî ñîçäàííûé ôàéë
+//! @par        ÃˆÃ±Ã²Ã®Ã°Ã¨Ã¿ Ã¨Ã§Ã¬Ã¥Ã­Ã¥Ã­Ã¨Ã© Ã´Ã Ã©Ã«Ã 
+//!           - Ã‚Ã¥Ã°Ã±Ã¨Ã¿ 0.01 Alpha
+//!             - Ã’Ã®Ã«Ã¼ÃªÃ® Ã·Ã²Ã® Ã±Ã®Ã§Ã¤Ã Ã­Ã­Ã»Ã© Ã´Ã Ã©Ã«
 //!
 //}=======================================================================
 
@@ -31,7 +31,7 @@ int smw,smh, slx, sly;
 
 public:
 
-    int sizeSlider(int sWidth, int sHeight, int slX, int slY)
+     sizeSlider(int sWidth, int sHeight, int slX, int slY)
         {
         smw=sWidth;
         smh=sHeight;
@@ -69,6 +69,12 @@ public:
         txSetFillColor(TX_BLUE);
         txRectangle(x, y, x+w, y+h);
         }
+            int click()
+            {
+            if (txMouseButtons() == 1)
+            if (txMouseX() > x && txMouseY() > y && txMouseX() < x+w && txMouseY() < y+h)
+            return 1;
+            }
 };
 
 class paintmenu
@@ -108,6 +114,7 @@ int main()
     while(txMouseButtons() != 3)
 {
     //b1.drawButton();
+    //b1.click();
     menu.drawMenu();
 }
     }
