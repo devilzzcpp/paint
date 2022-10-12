@@ -23,100 +23,116 @@
 //}=======================================================================
 
 #include "TXLib.h"
-#include <iostream>
 
-
-int x=0;
-int y=0;
-int xr=100;
-int yr=100;
-int zx=0;
-int buttonssquare=1;
-
-HDC mark=txLoadImage ("dev.bmp"); //пикча
-
-
-class print //класс для рисования фигур
+class sizeSlider
 {
 private:
-
- int x2, y2;
-
-
+int smw,smh, slx, sly;
 
 public:
 
-  int draw=0;
-  int x=0, y=0;         //верхний левый угол
-  int xr=1, yr=1;       //нижний правый угол
-  int cvet=TX_WHITE;    //основной цвет квадрата
-  int cvetobv=TX_GRAY;  //цвет обводки квадрата
-  int obv=7;            //размер обводки квадрата
+     sizeSlider(int sWidth, int sHeight, int slX, int slY)
+        {
+        smw=sWidth;
+        smh=sHeight;
+        slx=slX;
+        sly=slY;
+        }
 
-string name;
+    int drawSizeSlider()
+        {
+        txSetFillColor(TX_BLACK);
+        txLine(smw, smw, smh-10, smh+10);
+        txLine(smw, smw+10, smh+55, smh);
+        txLine(smw+65, smw, smh+55, smh+10);
+        }
 
-int drawsquare()
+    int mainSlider()
+            {
+            txSetFillColor(TX_BLACK);
+            txLine(slx,sly,slx,sly+10);
+                if (txMouseButtons() == 1)
+                    if (txMouseX() > slx && txMouseY() > sly && txMouseX() < slx+5 && txMouseY() < sly+10)
+                    slx=txMouseX();
+            }
+
+};
+
+class button
 {
-    if (txMouseButtons()==1)
-     {
-      draw=1;
-      x=txMouseX();
-      y=txMouseY();
-     }
+private:
 
-     while(txMouseButtons() == 1)
-     {
-       txBegin;
-      xr=txMouseX();
-      yr=txMouseY();
-      txSetFillColor(cvet);
-      txSetColor(cvetobv, obv);
-    txRectangle(x, y, xr, yr);
-    txSleep(50);
-     txEnd;
+int x,y,w,h;
 
-     }
+public:
 
 
- txSetFillColor(cvet);
- txSetColor(cvetobv, obv);
- txRectangle(x, y, xr, yr);
+    button(int x1, int y1, int width, int height)
+    {
+    x=x1;
+    y=y1;
+    w=width;
+    h=height;
+    }
 
-}
+        int drawButton()
+        {
+        txSetFillColor(TX_BLUE);
+        txRectangle(x, y, x+w, y+h);
+        }
 
-}      ;
+            int click()
+            {
+            if (txMouseButtons() == 1)
+            if (txMouseX() > x && txMouseY() > y && txMouseX() < x+w && txMouseY() < y+h)
+            return 1;
+            }
+};
+
+class paintmenu
+{
+private:
+int mw, mh, bw, bh;
+
+public:
+
+    paintmenu(int mWidth, int mHeight, int buttonsW, int buttonsH)
+    {
+    mw=mWidth;
+    mh=mHeight;
+    bw=buttonsW;
+    bh=buttonsH;
+    }
+
+    int drawMenu()
+        {
+    txSetFillColor(TX_WHITE);
+    txSetColor(TX_BLACK, 5);
+    txRectangle(10,10,100,590);
+        }
+
+};
 
 
 int main()
     {
+    txCreateWindow(800, 600);
+    txSetFillColour(TX_WHITE);
+    txClear();
 
-    txCreateWindow (800, 600);
-    txSetColor     (TX_BLACK);
+        paintmenu menu(200,300,2,3);
+        //button b1(100,300,30,30);
+        sizeSlider slider(20,30,25,30);
 
-    print sq;
-
-while(1)
+    while(txMouseButtons() != 3)
 {
-txSetFillColor(TX_BLACK);
-txClear();
-txBegin();
-
-/*
-          txSetFillColor (TX_DARKGRAY); Win32::RoundRect (txDC(), 105, 205, 705, 405, 30, 30);
-          txSetFillColor (TX_WHITE);    Win32::RoundRect (txDC(), 100, 200, 700, 400, 30, 30);
-
-          txSelectFont ("Arial", 20, 0, FW_BOLD);
-          txDrawText   (100, 250, 700, 350, "click here!");
-*/
-
-//if (txMouseButtons()==1 && txMouseX>100 && txMouseY>250 && txMouseX<700 && txMouseY<350){buttonssquare=1;} ,бета тест
-if (sq.draw||txMouseButtons()==1||buttonssquare==1) sq.drawsquare();
-
-
-
-
-txEnd();
+    txBegin();
+    //b1.drawButton();
+    //b1.click();
+    menu.drawMenu();
+    slider.drawSizeSlider();
+    slider.mainSlider();
+    txEnd();
 }
-    return 0;
     }
 
