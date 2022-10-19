@@ -23,6 +23,7 @@
 //}=======================================================================
 
 #include "TXLib.h"
+#include <string>
 
 class sizeSlider
 {
@@ -30,6 +31,7 @@ private:
 int smw,smh, slx, sly;
 
 public:
+  int begPX=20, begPY=20, endPX=85, endPY=43;
 
      sizeSlider(int sWidth, int sHeight, int slX, int slY)
         {
@@ -40,7 +42,7 @@ public:
         }
 
     int drawSizeSlider()
-        {
+            {
         txSetFillColor(TX_BLACK);
         txLine(smw, smw, smh-10, smh+10);
         txLine(smw, smw+10, smh+55, smh);
@@ -51,9 +53,16 @@ public:
             {
             txSetFillColor(TX_BLACK);
             txLine(slx,sly,slx,sly+10);
-                if (txMouseButtons() == 1)
-                    if (txMouseX() > slx && txMouseY() > sly && txMouseX() < slx+5 && txMouseY() < sly+10)
-                    slx=txMouseX();
+                if (txMouseX() > begPX && txMouseY() > begPY && txMouseX() < endPX && txMouseY() < endPY)
+                    if (txMouseButtons() == 1)
+                            slx=txMouseX();
+                                int result=(slx-begPX)/5;
+                                    std::stringstream ss;
+                                    ss << result;
+                                    std::string s = ss.str();
+                                        txTextOut(72, 53, s.c_str());
+                                            return result;
+
             }
 
 };
@@ -116,6 +125,7 @@ public:
 
 int main()
     {
+    //int widSlider;
     txCreateWindow(800, 600);
     txSetFillColour(TX_WHITE);
     txClear();
@@ -133,6 +143,14 @@ int main()
     slider.drawSizeSlider();
     slider.mainSlider();
     txEnd();
-}
+
+       /* if (txMouseButtons() == 1)
+        {
+        txSleep(100);
+        cout<<" "<<txMouseX()<<" ";
+        cout<<" "<<txMouseY()<<" ";
+        }  */
+
     }
 
+       }
