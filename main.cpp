@@ -1,3 +1,4 @@
+
 //========================================================================
 //! @file       Main.cpp
 //{=======================================================================
@@ -31,7 +32,7 @@ private:
 int smw,smh, slx, sly;
 
 public:
-  int begPX=20, begPY=20, endPX=85, endPY=43;
+  int begPX=20, begPY=20, endPX=85, endPY=43, result;
 
      sizeSlider(int sWidth, int sHeight, int slX, int slY)
         {
@@ -56,7 +57,7 @@ public:
                 if (txMouseX() > begPX && txMouseY() > begPY && txMouseX() < endPX && txMouseY() < endPY)
                     if (txMouseButtons() == 1)
                             slx=txMouseX();
-                                int result=(slx-begPX)/5;
+                                result=(slx-begPX)/5;
                                     std::stringstream ss;
                                     ss << result;
                                     std::string s = ss.str();
@@ -72,6 +73,7 @@ class button
 private:
 
 int x,y,w,h;
+COLORREF color=TX_BLUE;
 
 public:
 
@@ -86,7 +88,7 @@ public:
 
         int drawButton()
         {
-        txSetFillColor(TX_BLUE);
+        txSetFillColor(color);
         txRectangle(x, y, x+w, y+h);
         }
 
@@ -95,8 +97,24 @@ public:
             if (txMouseButtons() == 1)
             if (txMouseX() > x && txMouseY() > y && txMouseX() < x+w && txMouseY() < y+h)
             return 1;
+            return 0;
             }
+
+                int SetColor(COLORREF C)
+                {
+                color=C;
+                }
+
 };
+
+COLORREF colormenu()
+{
+    button red(0,0,100,30);
+        red.SetColor(TX_RED);
+        red.drawButton();
+          if (red.click())
+            return TX_RED;
+}
 
 class paintmenu
 {
@@ -125,23 +143,21 @@ public:
 
 int main()
     {
-    //int widSlider;
     txCreateWindow(800, 600);
     txSetFillColour(TX_WHITE);
     txClear();
 
         paintmenu menu(200,300,2,3);
-        //button b1(100,300,30,30);
         sizeSlider slider(20,30,25,30);
+
 
     while(txMouseButtons() != 3)
 {
     txBegin();
-    //b1.drawButton();
-    //b1.click();
     menu.drawMenu();
     slider.drawSizeSlider();
     slider.mainSlider();
+    colormenu();
     txEnd();
 
        /* if (txMouseButtons() == 1)
@@ -151,6 +167,6 @@ int main()
         cout<<" "<<txMouseY()<<" ";
         }  */
 
-    }
+}
 
        }
