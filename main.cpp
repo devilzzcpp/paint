@@ -24,7 +24,8 @@
 
 #include "TXLib.h"
 #include <iostream>
-
+#include <list>
+ using namespace std;
 
 int x=0;
 int y=0;
@@ -32,8 +33,10 @@ int xr=100;
 int yr=100;
 int zx=0;
 int buttonssquare=1;
-
-HDC mark=txLoadImage ("dev.bmp"); //пикча
+int bbs;
+int cvet=TX_WHITE;
+int cvetobv=TX_GRAY;
+int obv=7;
 
 
 class print //класс для рисования фигур
@@ -41,8 +44,6 @@ class print //класс для рисования фигур
 private:
 
  int x2, y2;
-
-
 
 public:
 
@@ -66,70 +67,57 @@ int drawsquare()
       y=txMouseY();
      }
 
+
      while(txMouseButtons() == 1)
-     {
-       txBegin;
-      xr=txMouseX();
-      yr=txMouseY();
-      txSetFillColor(cvet);
-      txSetColor(cvetobv, obv);
-       cout<<figure<<" ";
-      switch ( figure )
-      {
-         case 2: txRectangle(x, y, xr, yr); break;
-          case 3: txEllipse(x, y, xr, yr); break;
-          default :;
-          }
-    txSleep(50);
-     txEnd;
+        {
 
-     }
+        txBegin();
+        xr=txMouseX();
+        yr=txMouseY();
+       // txSetFillColor(cvet);
+        //txSetColor(cvetobv, obv);
+
+        switch ( figure )
+            {
+            case 2: txRectangle(x, y, xr, yr); break;
+            case 3: txEllipse(x, y, xr, yr); break;
+            default :;
+            }
+
+        txSleep(50);
+        txEnd();
+
+        }
 
 
- txSetFillColor(cvet);
- txSetColor(cvetobv, obv);
+            //txSetFillColor(cvet);
+            //txSetColor(cvetobv, obv);
 
-  switch ( figure )
-      {
-         case 2: txRectangle(x, y, xr, yr); break;
-          case 3: txEllipse(x, y, xr, yr); break;
-          default :;
-          }
+  switch (figure)
+            {
+            case 2: txRectangle(x, y, xr, yr); break;
+            case 3: txEllipse(x, y, xr, yr); break;
+            default :;
+            }
+
+
 
 }
 
+    int draws()
+    {
 
-/*int drawellipse()
-{
-    if (txMouseButtons()==1)
-     {
-      figure=3;
-      draw=1;
-      x=txMouseX();
-      y=txMouseY();
-     }
+        switch (figure)
+            {
+            case 2: txRectangle(x, y, xr, yr); break;
+            case 3: txEllipse(x, y, xr, yr); break;
+            default :;
+            }
 
-     while(txMouseButtons() == 1)
-     {
-       txBegin;
-      xr=txMouseX();
-      yr=txMouseY();
-      txSetFillColor(cvet);
-      txSetColor(cvetobv, obv);
-    txEllipse(x, y, xr, yr);
-    txSleep(50);
-     txEnd;
 
-     }
+    }
 
-txSetFillColor(cvet);
-txSetColor(cvetobv, obv);
-txEllipse(x, y, xr, yr);
-
-}      */
-
-}      ;
-
+};
 
 class sizeSlider
 {
@@ -137,6 +125,8 @@ private:
 int smw,smh, slx, sly;
 
 public:
+  int begPX=20, begPY=20, endPX=85, endPY=43, result;
+
 
      sizeSlider(int sWidth, int sHeight, int slX, int slY)
         {
@@ -147,10 +137,28 @@ public:
         }
 
     int drawSizeSlider()
-        {
+            {
         txSetFillColor(TX_BLACK);
-        txLine(smw, smw, smh, smh);
+        txLine(smw, smw, smh-10, smh+10);
+        txLine(smw, smw+10, smh+55, smh);
+        txLine(smw+65, smw, smh+55, smh+10);
         }
+
+    int mainSlider()
+            {
+            txSetFillColor(TX_BLACK);
+            txLine(slx,sly,slx,sly+10);
+                if (txMouseX() > begPX && txMouseY() > begPY && txMouseX() < endPX && txMouseY() < endPY)
+                    if (txMouseButtons() == 1)
+                            slx=txMouseX();
+                                 result=(slx-begPX)/5;
+                                    std::stringstream ss;
+                                    ss << result;
+                                    std::string s = ss.str();
+                                        txTextOut(72, 53, s.c_str());
+                                            return result;
+
+            }
 
 };
 
@@ -161,6 +169,8 @@ private:
 int x,y,w,h;
 
 public:
+COLORREF color=TX_BLUE;
+
 
 
     button(int x1, int y1, int width, int height)
@@ -173,7 +183,7 @@ public:
 
         int drawButton()
         {
-        txSetFillColor(TX_BLUE);
+        txSetFillColor(color);
         txRectangle(x, y, x+w, y+h);
         }
 
@@ -184,7 +194,62 @@ public:
         return 1;
         }
 
+
+        int clickr()
+        {
+        if (txMouseButtons() == 2)
+        if (txMouseX() > x && txMouseY() > y && txMouseX() < x+w && txMouseY() < y+h)
+        return 2;
+        }
+
+        int SetColor(COLORREF C)
+                {
+                color=C;
+                }
+
+
 };
+
+COLORREF colormenu()
+{
+    button red(20,90,100,190);
+        red.SetColor(TX_RED);
+        red.drawButton();
+          if (red.click())
+          {
+            return TX_RED;
+
+            }
+
+            if (red.clickr())
+          {
+            return TX_RED;
+
+            }
+
+
+            button black(20,300,100,190);
+        black.SetColor(TX_BLACK);
+        black.drawButton();
+          if (black.click())
+          {
+            return TX_BLACK;
+
+            }
+
+            if (black.clickr())
+          {
+            return TX_BLACK;
+            //return SetFillColor(TX_BLACK);
+
+            }
+
+
+
+            return TX_TRANSPARENT;
+
+
+}
 
 class paintmenu
 {
@@ -211,46 +276,80 @@ public:
 };
 
 int main()
-{
+        {
 
     txCreateWindow (800, 600);
-    txSetColor     (TX_BLACK);
+    txSetColor (TX_BLACK);
 
     paintmenu menu(200,300,2,3); //меню
-    button b1(20, 20, 25, 30)  ; //квадрат
-    button b2(50, 20, 25, 30)  ; //круг
-    button b3(80, 20, 10, 30)  ; //свободный курсор
+    button b1(20, 60, 25, 30); //квадрат
+    button b2(50, 60, 25, 30); //круг
+    button b3(80, 60, 10, 30); //свободный курсор
 
-    print sq;                    //рисовалка
-    int currentObject=2;         //для выбора фигур
+    sizeSlider slider(20,30,25,30);
+    print sq;//рисовалка
+    int currentObject=2;//для выбора фигур
+    int obvodka;
 
-
-while(1)
-{
-txSetFillColor(TX_BLACK);
-txClear();
-txBegin();
-
- menu.drawMenu();
- b1.drawButton();
- b1.click();
- b2.drawButton();
- b2.click();
- b3.drawButton();
- b3.click();
+    list <print> qs;
 
 
- if (b1.click()) currentObject=2;      // b1.выбрана
- if (b2.click()) currentObject=3;
- if (b3.click()) currentObject=0;
+    while(1)
+    {
+        txSetFillColor(TX_BLACK);
+        txClear();
 
- if (sq.draw||txMouseButtons()==1) {sq.figure=currentObject; sq.drawsquare();   }
+        txBegin();
+
+            for (print k:qs)
+            {
+            txSetFillColor(k.cvet);
+            txSetColor(k.cvetobv, k.obv);
+
+            k.draws();
+               }
+
+        menu.drawMenu();
+
+        slider.drawSizeSlider();
+        slider.mainSlider();
+
+         COLORREF cvetT=colormenu();
+         if (cvetT!=TX_TRANSPARENT)sq.cvet=cvetT;
+
+         COLORREF cvetobvT=colormenu();
+         if (cvetobvT!=TX_TRANSPARENT)sq.cvetobv=cvetobvT;
 
 
 
 
-txEnd();
-}
-    return 0;
-    }
+         b1.drawButton();
+         b1.click();
+         b2.drawButton();
+         b2.click();
+         b3.drawButton();
+         b3.click();
+
+
+         if (b1.click()) currentObject=2;// b1.выбрана
+         if (b2.click()) currentObject=3;//sq.figure=currentObject;
+         if (b3.click()) currentObject=0; //bbs=slider.result;
+
+
+
+
+         if (sq.draw||txMouseButtons()==1)
+                {
+            sq.figure=currentObject;
+            sq.drawsquare();
+            sq.obv=slider.result;
+            qs.push_back(sq);
+                }
+
+        txEnd();
+            }
+
+        return 0;
+
+        }
 
