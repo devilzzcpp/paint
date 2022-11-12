@@ -75,8 +75,14 @@ private:
 int x,y,w,h;
 COLORREF color=TX_BLUE;
 
+
 public:
 
+string pic;
+int picterVisible=0;
+int picterW, picterH;
+
+HDC picter;
 
     button(int x1, int y1, int width, int height)
     {
@@ -90,6 +96,11 @@ public:
         {
         txSetFillColor(color);
         txRectangle(x, y, x+w, y+h);
+
+                if (picterVisible)
+                    {
+                    txBitBlt (txDC(), x, y, picterW, picterH, picter);
+                    }
         }
 
             int click()
@@ -105,6 +116,16 @@ public:
                 color=C;
                 }
 
+                        int PicterAdd(string Pic, int picW, int picH)
+                        {
+                        picter = txLoadImage (Pic.c_str());
+
+                        picterVisible=1;
+                        picterW=picW;
+                        picterH=picH;
+                        }
+
+
 };
 
 COLORREF colormenu()
@@ -115,6 +136,26 @@ COLORREF colormenu()
           if (red.click())
             return TX_RED;
 }
+
+/*int brush()
+{
+    button brush(100,100,50,60);
+        brush.SetColor(Tx_WHITE);
+        brush.drawButton();
+            if (brush.click())
+                {
+                int brushcircles[]
+                txRectagle(10000,10000
+
+                }
+
+
+
+
+
+
+
+} */
 
 class paintmenu
 {
@@ -149,7 +190,7 @@ int main()
 
         paintmenu menu(200,300,2,3);
         sizeSlider slider(20,30,25,30);
-
+        button b1(20, 60, 30, 30);
 
     while(txMouseButtons() != 3)
 {
@@ -157,7 +198,9 @@ int main()
     menu.drawMenu();
     slider.drawSizeSlider();
     slider.mainSlider();
-    colormenu();
+        b1.PicterAdd("квадрат.bmp",30,30);
+        b1.drawButton();
+        b1.click();
     txEnd();
 
        /* if (txMouseButtons() == 1)
