@@ -169,7 +169,14 @@ private:
 int x,y,w,h;
 
 public:
-COLORREF color=TX_BLUE;
+COLORREF color=TX_WHITE;
+
+
+string pic;
+int picterVisible=0;
+int picterW, picterH;
+
+HDC picter;
 
 
 
@@ -185,6 +192,12 @@ COLORREF color=TX_BLUE;
         {
         txSetFillColor(color);
         txRectangle(x, y, x+w, y+h);
+
+        if (picterVisible)
+                    {
+                    txBitBlt (txDC(), x, y, picterW, picterH, picter);
+                    }
+
         }
 
         int click()
@@ -208,27 +221,38 @@ COLORREF color=TX_BLUE;
                 }
 
 
+
+        int PicterAdd(string Pic, int picW, int picH)
+                        {
+                        picter = txLoadImage (Pic.c_str());
+
+                        picterVisible=1;
+                        picterW=picW;
+                        picterH=picH;
+                        }
+
 };
 
 COLORREF colormenu()
 {
-    button red(20,90,100,190);
-        red.SetColor(TX_RED);
-        red.drawButton();
-          if (red.click())
+    button white(20,100,30,30);
+        white.SetColor(TX_WHITE);
+        white.drawButton();
+          if (white.click())
           {
-            return TX_RED;
+            return TX_WHITE;
 
             }
 
-            if (red.clickr())
+            if (white.clickr())
           {
-            return TX_RED;
+          cvetobv=TX_WHITE;
+            return TX_WHITE;
 
             }
 
 
-            button black(20,300,100,190);
+            button black(60,100,30,30);
         black.SetColor(TX_BLACK);
         black.drawButton();
           if (black.click())
@@ -239,6 +263,7 @@ COLORREF colormenu()
 
             if (black.clickr())
           {
+          cvetobv=TX_BLACK;
             return TX_BLACK;
             //return SetFillColor(TX_BLACK);
 
@@ -282,9 +307,14 @@ int main()
     txSetColor (TX_BLACK);
 
     paintmenu menu(200,300,2,3); //меню
-    button b1(20, 60, 25, 30); //квадрат
-    button b2(50, 60, 25, 30); //круг
-    button b3(80, 60, 10, 30); //свободный курсор
+    button b1(20, 60, 30, 30); //квадрат
+    b1.PicterAdd("квадрат.bmp",30,30);
+
+    button b2(60, 60, 30, 30); //круг
+    b2.PicterAdd("круг.bmp",30,30);
+    //button b3(80, 60, 10, 30); //свободный курсор
+
+
 
     sizeSlider slider(20,30,25,30);
     print sq;//рисовалка
@@ -314,6 +344,9 @@ int main()
         slider.drawSizeSlider();
         slider.mainSlider();
 
+
+
+
          COLORREF cvetT=colormenu();
          if (cvetT!=TX_TRANSPARENT)sq.cvet=cvetT;
 
@@ -327,13 +360,13 @@ int main()
          b1.click();
          b2.drawButton();
          b2.click();
-         b3.drawButton();
-         b3.click();
+    //     b3.drawButton();
+      //   b3.click();
 
 
          if (b1.click()) currentObject=2;// b1.выбрана
          if (b2.click()) currentObject=3;//sq.figure=currentObject;
-         if (b3.click()) currentObject=0; //bbs=slider.result;
+//         if (b3.click()) currentObject=0; //bbs=slider.result;
 
 
 
