@@ -53,7 +53,7 @@ public:
   int cvet=TX_WHITE;    //основной цвет квадрата  txEllipse (100, 100, 300, 200);
   int cvetobv=TX_GRAY;  //цвет обводки квадрата
   int obv=7;            //размер обводки квадрата
-  int figure=3;         //какая фигура будет рисоваться 0-никакая, 1-линия, 2-квадрат, 3-элепс
+  int figure=3;         //какая фигура будет рисоваться 0-никакая, 1-линия, 2-квадрат, 3-элипс
 
 string name;
 
@@ -95,6 +95,7 @@ int drawsquare()
 
   switch (figure)
             {
+            case 0: txEllipse(x, y, xr, yr); break;
             case 2: txRectangle(x, y, xr, yr); break;
             case 3: txEllipse(x, y, xr, yr); break;
             default :;
@@ -238,17 +239,16 @@ COLORREF colormenu()
     button white(20,100,30,30);
         white.SetColor(TX_WHITE);
         white.drawButton();
-          if (white.click())
-          {
-            return TX_WHITE;
 
+          if (white.click())
+            {
+            return TX_WHITE;
             }
 
             if (white.clickr())
-          {
-          cvetobv=TX_WHITE;
+            {
+          //cvetobv=TX_WHITE;
             return TX_WHITE;
-
             }
 
 
@@ -256,20 +256,75 @@ COLORREF colormenu()
         black.SetColor(TX_BLACK);
         black.drawButton();
           if (black.click())
-          {
+            {
             return TX_BLACK;
-
             }
 
             if (black.clickr())
-          {
-          cvetobv=TX_BLACK;
+            {
+          //cvetobv=TX_BLACK;
             return TX_BLACK;
-            //return SetFillColor(TX_BLACK);
-
             }
 
+        button red(20,140,30,30);
+        red.SetColor(TX_RED);
+        red.drawButton();
 
+          if (red.click())
+            {
+            return TX_RED;
+            }
+
+            if (red.clickr())
+            {
+          //cvetobv=TX_RED;
+            return TX_RED;
+            }
+
+            button yellow(60,140,30,30);
+        yellow.SetColor(TX_YELLOW);
+        yellow.drawButton();
+
+          if (yellow.click())
+            {
+            return TX_YELLOW;
+            }
+
+            if (yellow.clickr())
+            {
+          //cvetobv=TX_YELLOW;
+            return TX_YELLOW;
+            }
+
+             button blue(20,180,30,30);
+        blue.SetColor(TX_BLUE);
+        blue.drawButton();
+
+          if (blue.click())
+            {
+            return TX_BLUE;
+            }
+
+            if (blue.clickr())
+            {
+          //cvetobv=TX_BLUE;
+            return TX_BLUE;
+            }
+
+            button lightgray(60,180,30,30);
+        lightgray.SetColor(TX_LIGHTGRAY);
+        lightgray.drawButton();
+
+          if (lightgray.click())
+            {
+            return TX_LIGHTGRAY;
+            }
+
+            if (lightgray.clickr())
+            {
+          //cvetobv=TX_LIGHTGRAY;
+            return TX_LIGHTGRAY;
+            }
 
             return TX_TRANSPARENT;
 
@@ -300,6 +355,7 @@ public:
 
 };
 
+
 int main()
         {
 
@@ -313,6 +369,9 @@ int main()
     button b2(60, 60, 30, 30); //круг
     b2.PicterAdd("круг.bmp",30,30);
     //button b3(80, 60, 10, 30); //свободный курсор
+
+    //button b3(20, 220, 30, 30); //кисть
+    //b3.PicterAdd("кисть.bmp",30,30);
 
 
 
@@ -329,10 +388,13 @@ int main()
         txSetFillColor(TX_BLACK);
         txClear();
 
+
+
         txBegin();
 
             for (print k:qs)
             {
+
             txSetFillColor(k.cvet);
             txSetColor(k.cvetobv, k.obv);
 
@@ -360,13 +422,13 @@ int main()
          b1.click();
          b2.drawButton();
          b2.click();
-    //     b3.drawButton();
-      //   b3.click();
+        // b3.drawButton();
+        // b3.click();
 
 
          if (b1.click()) currentObject=2;// b1.выбрана
          if (b2.click()) currentObject=3;//sq.figure=currentObject;
-//         if (b3.click()) currentObject=0; //bbs=slider.result;
+         //if (b3.click()) currentObject=3; //bbs=slider.result;
 
 
 
