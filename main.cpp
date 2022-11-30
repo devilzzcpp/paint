@@ -84,6 +84,7 @@ int drawsquare()
             default :;
             }
 
+
         txSleep(50);
         txEnd();
 
@@ -233,38 +234,45 @@ HDC picter;
                         }
 
 };
+struct  colormenuCvet
+{COLORREF cvt1;
+COLORREF cvt2;} ;
 
-COLORREF colormenu()
-{
+colormenuCvet colormenu()
+{colormenuCvet x;
+x.cvt1=TX_TRANSPARENT;
+x.cvt2=TX_TRANSPARENT;
     button white(20,100,30,30);
         white.SetColor(TX_WHITE);
         white.drawButton();
 
           if (white.click())
             {
-            return TX_WHITE;
+            x.cvt1=TX_WHITE;
             }
 
             if (white.clickr())
             {
-          //cvetobv=TX_WHITE;
-            return TX_WHITE;
+             x.cvt2=TX_WHITE;
             }
+
+
 
 
             button black(60,100,30,30);
         black.SetColor(TX_BLACK);
         black.drawButton();
+
           if (black.click())
             {
-            return TX_BLACK;
+            x.cvt1=TX_BLACK;
             }
 
             if (black.clickr())
             {
-          //cvetobv=TX_BLACK;
-            return TX_BLACK;
+          x.cvt2=TX_BLACK;
             }
+
 
         button red(20,140,30,30);
         red.SetColor(TX_RED);
@@ -272,13 +280,12 @@ COLORREF colormenu()
 
           if (red.click())
             {
-            return TX_RED;
+            x.cvt1=TX_RED;
             }
 
             if (red.clickr())
             {
-          //cvetobv=TX_RED;
-            return TX_RED;
+            x.cvt2=TX_RED;
             }
 
             button yellow(60,140,30,30);
@@ -287,13 +294,12 @@ COLORREF colormenu()
 
           if (yellow.click())
             {
-            return TX_YELLOW;
+            x.cvt1=TX_YELLOW;
             }
 
             if (yellow.clickr())
             {
-          //cvetobv=TX_YELLOW;
-            return TX_YELLOW;
+            x.cvt2=TX_YELLOW;
             }
 
              button blue(20,180,30,30);
@@ -302,15 +308,16 @@ COLORREF colormenu()
 
           if (blue.click())
             {
-            return TX_BLUE;
+            x.cvt1=TX_BLUE;
             }
 
             if (blue.clickr())
             {
-          //cvetobv=TX_BLUE;
-            return TX_BLUE;
+            x.cvt2=TX_BLUE;
             }
 
+            return x;
+/*
             button lightgray(60,180,30,30);
         lightgray.SetColor(TX_LIGHTGRAY);
         lightgray.drawButton();
@@ -325,9 +332,8 @@ COLORREF colormenu()
           //cvetobv=TX_LIGHTGRAY;
             return TX_LIGHTGRAY;
             }
-
-            return TX_TRANSPARENT;
-
+*/
+           // return TX_TRANSPARENT;
 
 }
 
@@ -359,8 +365,8 @@ public:
 int main()
         {
 
-    txCreateWindow (800, 600);
-    txSetColor (TX_BLACK);
+    txCreateWindow (1900, 1000);
+    txSetColor (TX_WHITE);
 
     paintmenu menu(200,300,2,3); //меню
     button b1(20, 60, 30, 30); //квадрат
@@ -370,8 +376,10 @@ int main()
     b2.PicterAdd("круг.bmp",30,30);
     //button b3(80, 60, 10, 30); //свободный курсор
 
-    //button b3(20, 220, 30, 30); //кисть
+   // button b3(20, 220, 30, 30); //кисть
     //b3.PicterAdd("кисть.bmp",30,30);
+
+     button b4(20, 240, 30, 30);
 
 
 
@@ -380,12 +388,14 @@ int main()
     int currentObject=2;//для выбора фигур
     int obvodka;
 
+
+
     list <print> qs;
 
 
     while(1)
     {
-        txSetFillColor(TX_BLACK);
+        txSetFillColor(TX_WHITE);
         txClear();
 
 
@@ -409,11 +419,12 @@ int main()
 
 
 
-         COLORREF cvetT=colormenu();
-         if (cvetT!=TX_TRANSPARENT)sq.cvet=cvetT;
+         colormenuCvet cvetT=colormenu();
 
-         COLORREF cvetobvT=colormenu();
-         if (cvetobvT!=TX_TRANSPARENT)sq.cvetobv=cvetobvT;
+         if (cvetT.cvt1!=TX_TRANSPARENT){sq.cvet=cvetT.cvt1;}
+
+
+         if (cvetT.cvt2!=TX_TRANSPARENT)sq.cvetobv=cvetT.cvt2;
 
 
 
@@ -424,22 +435,31 @@ int main()
          b2.click();
         // b3.drawButton();
         // b3.click();
-
+         b4.drawButton();
+         b4.click();
 
          if (b1.click()) currentObject=2;// b1.выбрана
          if (b2.click()) currentObject=3;//sq.figure=currentObject;
          //if (b3.click()) currentObject=3; //bbs=slider.result;
+         if (b4.click()) { if(!qs.empty()) qs.pop_back(); if(!qs.empty()) qs.pop_back();}
 
 
+         sq.drawsquare();
+         if (sq.draw && txMouseX()>=200 )
 
-
-         if (sq.draw||txMouseButtons()==1)
                 {
             sq.figure=currentObject;
-            sq.drawsquare();
+
             sq.obv=slider.result;
             qs.push_back(sq);
+            //cout<<" "<<qs.size()<<" ";
+            sq.draw=0;
+            //auto p=qs.begin();
+
+
                 }
+                sq.draw=0;
+
 
         txEnd();
             }
