@@ -32,7 +32,7 @@ private:
 int smw,smh, slx, sly;
 
 public:
-  int begPX=20, begPY=20, endPX=85, endPY=43, result;
+  int begPX=20, begPY=20, endPX=230, endPY=43, result;
 
      sizeSlider(int sWidth, int sHeight, int slX, int slY)
         {
@@ -45,9 +45,9 @@ public:
     int drawSizeSlider()
             {
         txSetFillColor(TX_BLACK);
-        txLine(smw, smw, smh-10, smh+10);
-        txLine(smw, smw+10, smh+55, smh);
-        txLine(smw+65, smw, smh+55, smh+10);
+        txLine(smw, smw, smh-10, smh+20);//1 линия
+        txLine(smw, smw+10, smh+200, smh);//2 линия
+        txLine(smw+210, smw, smh+200, smh+20);//3 линия
         }
 
     int mainSlider()
@@ -137,26 +137,6 @@ COLORREF colormenu()
             return TX_RED;
 }
 
-/*int brush()
-{
-    button brush(100,100,50,60);
-        brush.SetColor(Tx_WHITE);
-        brush.drawButton();
-            if (brush.click())
-                {
-                int brushcircles[]
-                txRectagle(10000,10000
-
-                }
-
-
-
-
-
-
-
-} */
-
 class paintmenu
 {
 private:
@@ -176,7 +156,7 @@ public:
         {
     txSetFillColor(TX_WHITE);
     txSetColor(TX_BLACK, 5);
-    txRectangle(10,10,100,590);
+    txRectangle(10,10,250,1000);
         }
 
 };
@@ -184,7 +164,7 @@ public:
 
 int main()
     {
-    txCreateWindow(800, 600);
+    txCreateWindow(1920, 1050);
     txSetFillColour(TX_WHITE);
     txClear();
 
