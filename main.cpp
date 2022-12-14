@@ -1,4 +1,3 @@
-
 //========================================================================
 //! @file       Main.cpp
 //{=======================================================================
@@ -25,6 +24,46 @@
 
 #include "TXLib.h"
 #include <string>
+
+class text
+{
+private:
+
+public:
+
+int k=1;
+char c;
+string s;
+int x, y;
+
+
+   string textdraw()
+{
+COLORREF CVT=txGetFillColor();
+    x=txMouseX();
+    y=txMouseY();
+    while (k!=13)
+    {
+        //txBegin();
+        k=getch();
+        c=k;
+        if ( c == '\b')
+            {
+            s.erase(s.length()-1);
+            }
+        else s=s+c;
+                txTextOut(x, y, s.c_str());
+               // txEnd();
+                txSleep(200);
+                txSetFillColor(TX_WHITE);
+                txClear();
+
+    }
+    txSetFillColor(CVT);
+        return s;
+}
+
+};
 
 class sizeSlider
 {
@@ -171,6 +210,7 @@ int main()
         paintmenu menu(200,300,2,3);
         sizeSlider slider(20,30,25,30);
         button b1(20, 60, 30, 30);
+        text t1;
 
     while(txMouseButtons() != 3)
 {
@@ -181,6 +221,9 @@ int main()
         b1.PicterAdd("квадрат.bmp",30,30);
         b1.drawButton();
         b1.click();
+        string s111;
+        if (txMouseButtons() == 1) {s111=t1.textdraw();}
+        txTextOut(t1.x,t1.y,s111.c_str());
     txEnd();
 
        /* if (txMouseButtons() == 1)
