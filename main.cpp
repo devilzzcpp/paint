@@ -38,6 +38,31 @@ int cvet=TX_WHITE;
 int cvetobv=TX_GRAY;
 int obv=7;
 
+struct sixtangle
+{
+POINT line[6];//;={{0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}};
+
+};
+sixtangle sixtangle1(int x , int y, int xr, int yr)
+{
+int xpoint = (xr-x)/2;
+int ypoint = (yr-y)/3;
+sixtangle A;
+    A.line[0].x=x;
+        A.line[0].y=ypoint+y;
+            A.line[1].x=xpoint+x;
+                A.line[1].y=y;
+                    A.line[2].x=xr;
+                        A.line[2].y=ypoint+y;
+                            A.line[3].x=xr;
+                                A.line[3].y=ypoint*2+y;
+                                    A.line[4].x=xpoint+x;
+                                        A.line[4].y=yr;
+                                            A.line[5].x=x;
+                                                A.line[5].y=ypoint*2+y;
+//A.s = {{x, ypoint}, {xpoint, y}, {xr, ypoint}, {xr, ypoint*2}, {xpoint, yr}, {x, ypoint*2}};
+return A;
+};
 
 class print //класс дл€ рисовани€ фигур
 {
@@ -81,11 +106,13 @@ int drawsquare()
             {
             case 2: txRectangle(x, y, xr, yr); break;
             case 3: txEllipse(x, y, xr, yr); break;
+            case 4: sixtangle A; A=sixtangle1(x, y, xr, yr); txPolygon(A.line, 6); break;
+            case 5: txLine(x, y, xr, yr); break;
             default :;
             }
 
 
-        txSleep(50);
+        txSleep(1);
         txEnd();
 
         }
@@ -99,6 +126,8 @@ int drawsquare()
             case 0: txEllipse(x, y, xr, yr); break;
             case 2: txRectangle(x, y, xr, yr); break;
             case 3: txEllipse(x, y, xr, yr); break;
+            case 4: sixtangle A; A=sixtangle1(x, y, xr, yr); txPolygon(A.line, 6);
+            case 5: txLine(x, y, xr, yr); break;
             default :;
             }
 
@@ -113,6 +142,8 @@ int drawsquare()
             {
             case 2: txRectangle(x, y, xr, yr); break;
             case 3: txEllipse(x, y, xr, yr); break;
+            case 4: sixtangle A; A=sixtangle1(x, y, xr, yr); txPolygon(A.line, 6); break;
+            case 5: txLine(x, y, xr, yr); break;
             default :;
             }
 
@@ -121,13 +152,16 @@ int drawsquare()
 
 };
 
+
+
+
 class sizeSlider
 {
 private:
 int smw,smh, slx, sly;
 
 public:
-  int begPX=20, begPY=20, endPX=85, endPY=43, result;
+  int begPX=20, begPY=20, endPX=230, endPY=43, result;
 
 
      sizeSlider(int sWidth, int sHeight, int slX, int slY)
@@ -141,9 +175,9 @@ public:
     int drawSizeSlider()
             {
         txSetFillColor(TX_BLACK);
-        txLine(smw, smw, smh-10, smh+10);
-        txLine(smw, smw+10, smh+55, smh);
-        txLine(smw+65, smw, smh+55, smh+10);
+        txLine(smw, smw, smh-10, smh+20);//1 лини€
+        txLine(smw, smw+10, smh+200, smh);//2 лини€
+        txLine(smw+210, smw, smh+200, smh+20);//3 лини€
         }
 
     int mainSlider()
@@ -157,7 +191,7 @@ public:
                                     std::stringstream ss;
                                     ss << result;
                                     std::string s = ss.str();
-                                        txTextOut(72, 53, s.c_str());
+                                        txTextOut(220, 53, s.c_str());
                                             return result;
 
             }
@@ -234,6 +268,7 @@ HDC picter;
                         }
 
 };
+
 struct  colormenuCvet
 {COLORREF cvt1;
 COLORREF cvt2;} ;
@@ -242,7 +277,7 @@ colormenuCvet colormenu()
 {colormenuCvet x;
 x.cvt1=TX_TRANSPARENT;
 x.cvt2=TX_TRANSPARENT;
-    button white(20,100,30,30);
+    button white(30,220,50,50);
         white.SetColor(TX_WHITE);
         white.drawButton();
 
@@ -259,7 +294,7 @@ x.cvt2=TX_TRANSPARENT;
 
 
 
-            button black(60,100,30,30);
+            button black(100,220,50,50);
         black.SetColor(TX_BLACK);
         black.drawButton();
 
@@ -274,7 +309,7 @@ x.cvt2=TX_TRANSPARENT;
             }
 
 
-        button red(20,140,30,30);
+        button red(170,220,50,50);
         red.SetColor(TX_RED);
         red.drawButton();
 
@@ -288,7 +323,7 @@ x.cvt2=TX_TRANSPARENT;
             x.cvt2=TX_RED;
             }
 
-            button yellow(60,140,30,30);
+            button yellow(30,290,50,50);
         yellow.SetColor(TX_YELLOW);
         yellow.drawButton();
 
@@ -302,7 +337,7 @@ x.cvt2=TX_TRANSPARENT;
             x.cvt2=TX_YELLOW;
             }
 
-             button blue(20,180,30,30);
+             button blue(100,290,50,50);
         blue.SetColor(TX_BLUE);
         blue.drawButton();
 
@@ -356,7 +391,7 @@ public:
         {
     txSetFillColor(TX_WHITE);
     txSetColor(TX_BLACK, 5);
-    txRectangle(10,10,100,590);
+    txRectangle(10,10,250,1000);
         }
 
 };
@@ -365,22 +400,24 @@ public:
 int main()
         {
 
-    txCreateWindow (1900, 1000);
+    txCreateWindow (1920, 1050);
     txSetColor (TX_WHITE);
 
-    paintmenu menu(200,300,2,3); //меню
-    button b1(20, 60, 30, 30); //квадрат
-    b1.PicterAdd("квадрат.bmp",30,30);
+     paintmenu menu(200,300,2,3); //меню
+     button b1(30, 80, 50, 50); //квадрат
+     b1.PicterAdd("нормквадрат.bmp",50,50);
 
-    button b2(60, 60, 30, 30); //круг
-    b2.PicterAdd("круг.bmp",30,30);
-    //button b3(80, 60, 10, 30); //свободный курсор
+     button b2(100, 80, 50, 50); //круг
+     b2.PicterAdd("нормкруг.bmp",50,50);
 
-   // button b3(20, 220, 30, 30); //кисть
-    //b3.PicterAdd("кисть.bmp",30,30);
+     button b3(170, 80, 50, 50); //шестиугольник
+     b3.PicterAdd("Ў≈—“»”√ќЋ№Ќ» „“ќ.bmp",50,50);
 
-     button b4(20, 240, 30, 30);
+     button b4(30, 900, 50, 50);
+     b4.PicterAdd("мусорка.bmp",50,50);
 
+     button b5(30, 150, 50, 50);
+     b5.PicterAdd("крута€лини€.bmp",50,50);
 
 
     sizeSlider slider(20,30,25,30);
@@ -397,8 +434,12 @@ int main()
     {
         txSetFillColor(TX_WHITE);
         txClear();
-
-
+        txSetColor(TX_GRAY,2);
+        txSetFillColor(TX_GRAY);
+        txRectangle(300+10,10+10,1900+10,1000+10);
+        txSetFillColor(TX_WHITE);
+        txSetColor(TX_BLACK,1);
+        txRectangle(300,10,1900,1000);
 
         txBegin();
 
@@ -433,32 +474,37 @@ int main()
          b1.click();
          b2.drawButton();
          b2.click();
-        // b3.drawButton();
-        // b3.click();
+         b3.drawButton();
+         b3.click();
          b4.drawButton();
          b4.click();
+         b5.drawButton();
+         b5.click();
 
          if (b1.click()) currentObject=2;// b1.выбрана
          if (b2.click()) currentObject=3;//sq.figure=currentObject;
-         //if (b3.click()) currentObject=3; //bbs=slider.result;
+         if (b3.click()) currentObject=4; //bbs=slider.result;
          if (b4.click()) { if(!qs.empty()) qs.pop_back(); if(!qs.empty()) qs.pop_back();}
+         if (GetAsyncKeyState(VkKeyScan('z'))) { if(!qs.empty()) qs.pop_back(); if(!qs.empty()) qs.pop_back(); txSleep(100);}
+         if (b5.click()) currentObject=5;
 
 
+if (txMouseX()>=300&& txMouseY()>=10&& txMouseY()<1000 && txMouseX()<=1900 )
          sq.drawsquare();
-         if (sq.draw && txMouseX()>=200 )
+         if (sq.draw && txMouseX()>=300 && txMouseX()<=1900 && txMouseY()>=10&& txMouseY()<1000 )
 
                 {
-            sq.figure=currentObject;
 
+            sq.figure=currentObject;
             sq.obv=slider.result;
             qs.push_back(sq);
-            //cout<<" "<<qs.size()<<" ";
             sq.draw=0;
-            //auto p=qs.begin();
 
 
                 }
                 sq.draw=0;
+
+
 
 
         txEnd();
