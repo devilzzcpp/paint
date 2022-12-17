@@ -37,6 +37,7 @@ int bbs;
 int cvet=TX_WHITE;
 int cvetobv=TX_GRAY;
 int obv=7;
+int textdrw=0;
 
 struct sixtangle
 {
@@ -152,8 +153,51 @@ int drawsquare()
 
 };
 
+class text
+{
+private:
+
+public:
+
+int k=1;
+char c;
+string s;
+int x, y;
 
 
+   string textdraw()
+{
+COLORREF CVT=txGetFillColor();
+    x=txMouseX();
+    y=txMouseY();
+    while (k!=13)
+    {
+        //txBegin();
+        k=getch();
+        c=k;
+        if ( c == '\b')
+            {
+            s.erase(s.length()-1);
+            }
+        else s=s+c;
+                txTextOut(x, y, s.c_str());
+               // txEnd();
+                txSleep(200);
+                txSetFillColor(TX_WHITE);
+                txClear();
+
+    }
+    k=0;
+    txSetFillColor(CVT);
+        return s;
+}
+int draw()
+{
+txTextOut(x, y, s.c_str());
+
+
+ }
+};
 
 class sizeSlider
 {
@@ -419,15 +463,19 @@ int main()
      button b5(30, 150, 50, 50);
      b5.PicterAdd("крутаялиния.bmp",50,50);
 
+     button b6(100, 150, 50, 50);//текст твою мать
+     b6.PicterAdd("ткст.bmp",50,50);
 
     sizeSlider slider(20,30,25,30);
     print sq;//рисовалка
+    text t1;
     int currentObject=2;//для выбора фигур
     int obvodka;
 
 
 
     list <print> qs;
+    list <text> qt;
 
 
     while(1)
@@ -451,6 +499,17 @@ int main()
 
             k.draws();
                }
+
+                for (text k:qt)
+            {
+
+            //txSetFillColor(k.cvet);
+            txSetColor(TX_RED);
+            txSelectFont ("Comic Sans MS", 40);
+
+            k.draw();
+               }
+
 
         menu.drawMenu();
 
@@ -480,6 +539,8 @@ int main()
          b4.click();
          b5.drawButton();
          b5.click();
+         b6.drawButton();
+         b6.click();
 
          if (b1.click()) currentObject=2;// b1.выбрана
          if (b2.click()) currentObject=3;//sq.figure=currentObject;
@@ -487,10 +548,17 @@ int main()
          if (b4.click()) { if(!qs.empty()) qs.pop_back(); if(!qs.empty()) qs.pop_back();}
          if (GetAsyncKeyState(VkKeyScan('z'))) { if(!qs.empty()) qs.pop_back(); if(!qs.empty()) qs.pop_back(); txSleep(100);}
          if (b5.click()) currentObject=5;
+         if (b6.click()) textdrw=1;
+
+
+        string s111;
+        if (textdrw==1 && txMouseX()>=300&& txMouseY()>=10&& txMouseY()<1000 && txMouseX()<=1900 && txMouseButtons()==1)
+         {t1.textdraw();
+          qt.push_back(t1); textdrw=0;}
 
 
 if (txMouseX()>=300&& txMouseY()>=10&& txMouseY()<1000 && txMouseX()<=1900 )
-         sq.drawsquare();
+   sq.drawsquare();
          if (sq.draw && txMouseX()>=300 && txMouseX()<=1900 && txMouseY()>=10&& txMouseY()<1000 )
 
                 {
