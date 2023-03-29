@@ -114,3 +114,308 @@ Run file:	C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe
 Directory:	C:\Users\user\Documents\Скрябин Роман\startup\startup
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400], Instance: 0x005132FC (32-bit), Flags: CMdRe0, Thread: 0x1D88 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004112A6 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: _txOnSignal() at c:/codeblocks/codeblocks/mingw/include/txlib.h (10992)
+# 1 0x761571F1 in C:\Windows\System32\msvcrt.dll: raise()
+# 2 0x7615B69B in C:\Windows\System32\msvcrt.dll: abort()
+# 3 0x00450702 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: __gnu_debug::_Error_formatter::_M_error()
+
+# 4 0x004AF31F in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: pop_back() at c:/codeblocks/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 5 0x0042C669 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: main() at C:/Users/user/Documents/Скрябин Роман/startup/startup/main.cpp (449):
+
+    447: 
+    448:                 }
+=>  449:          if (1) {cout<<"hjfjfjf";qs.pop_back();}
+    450:         txEnd();
+    451:             }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 23 2022 18:17:44, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 23 2022 18:17:53
+
+Run file:	C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe
+Directory:	C:\Users\user\Documents\Скрябин Роман\startup\startup
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400], Instance: 0x005132FC (32-bit), Flags: CMdRe0, Thread: 0x1E34 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004112A6 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: _txOnSignal() at c:/codeblocks/codeblocks/mingw/include/txlib.h (10992)
+# 1 0x761571F1 in C:\Windows\System32\msvcrt.dll: raise()
+# 2 0x7615B69B in C:\Windows\System32\msvcrt.dll: abort()
+# 3 0x00450712 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: __gnu_debug::_Error_formatter::_M_error()
+
+# 4 0x004AF32F in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: pop_back() at c:/codeblocks/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 5 0x0042C607 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: main() at C:/Users/user/Documents/Скрябин Роман/startup/startup/main.cpp (435):
+
+    433:          if (b2.click()) currentObject=3;//sq.figure=currentObject;
+    434:          //if (b3.click()) currentObject=3; //bbs=slider.result;
+=>  435:         if (b4.click()) {cout<<"hjfjfjf";qs.pop_back();}
+    436: 
+    437: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 23 2022 18:18:51, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 23 2022 18:19:00
+
+Run file:	C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe
+Directory:	C:\Users\user\Documents\Скрябин Роман\startup\startup
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x6626E2F0 в функции SymGetLineFromAddrW64(). Попытка прочесть данные по адресу 0x03CA4A00 в модуле c:\codeblocks\codeblocks\mingw\include\Windows\MgwHelp32.dll. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#2: TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400], Instance: 0x005132FC (32-bit), Flags: CMdrE0, Thread: 0x2BD0 (Canvas), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x6626E2F0 in c:\codeblocks\codeblocks\mingw\include\Windows\MgwHelp32.dll: SymGetLineFromAddrW64()
+# 2 0x6625AC20 in c:\codeblocks\codeblocks\mingw\include\Windows\MgwHelp32.dll: SymGetLineFromAddrW64()
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::_txSymGetFromAddr(void*, {anonymous}::TX::Win32::SYMBOL_INFO**, {anonymous}::TX::Win32::IMAGEHLP_LINE64**, const char**, const char**, int) at c:\codeblocks\codeblocks\mingw\include\txlib.h (12249):
+
+  12247: $   if (!addr && process)
+  12248:         {
+=>12249: $       _TX_CALL (LIB_::SymCleanup, (process));
+  12250: 
+  12251: $       process = NULL;
+
+# 1 in void {anonymous}::TX::_txCleanup() at c:\codeblocks\codeblocks\mingw\include\txlib.h (9122):
+
+   9120: $   _flushall();
+   9121: 
+=> 9122: $   _txSymGetFromAddr (NULL);
+   9123: 
+   9124:     // That's all, folks
+
+# 2 in unsigned int {anonymous}::TX::_txCanvas_ThreadProc(void*) at c:\codeblocks\codeblocks\mingw\include\txlib.h (9769):
+
+   9767: $   if (_txRunning && _txMain)         // Main window is destroyed but main() is still running.
+   9768:         {                              // No chances for good termination, so use exit().
+=> 9769: $       _txCleanup();
+   9770: $       ::exit ((int) msg.wParam);     //-V202 //-V2509 //-V2014
+   9771:         }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Nov 26 2022 17:34:16, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 26 2022 17:34:24
+
+Run file:	C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe
+Directory:	C:\Users\user\Documents\Скрябин Роман\startup\startup
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe,
+
+ВНЕЗАПНО: std::terminate(): Неперехваченное исключение в функции main() или в деструкторе, или другая фатальная ошибка C++. 
+
+Объект исключения C++: std::out_of_range, what(): "basic_string::erase", его адрес 0x04857190.
+
+Используйте try/catch блоки, перехватывайте catch (...), проверяйте вызовы виртуальных функций, разбирайтесь, в чем дело.
+
+С помощью std::set_terminate() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400], Instance: 0x005162FC (32-bit), Flags: CMdRe0, Thread: 0x810 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00411474 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: _txOnTerminate() at c:/codeblocks/codeblocks/mingw/include/txlib.h (11016)
+# 1 0x00449617 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: __cxxabiv1::__terminate()
+
+# 2 0x00454A88 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: _M_check() at c:/codeblocks/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 3 0x00484D2E in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: erase() at c:/codeblocks/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 4 0x0044CDC7 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: textdraw() at c:/codeblocks/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 5 0x0042CCDF in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: main() at C:/Users/user/Documents/Скрябин Роман/startup/startup/main.cpp (554):
+
+    552:         string s111;
+    553:         if (textdrw==1 && txMouseX()>=300&& txMouseY()>=10&& txMouseY()<1000 && txMouseX()<=1900 && txMouseButtons()==1)
+=>  554:          {t1.textdraw();
+    555:           qt.push_back(t1); textdrw=0;}
+    556: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Dec 17 2022 18:09:13, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Dec 17 2022 18:09:22
+
+Run file:	C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe
+Directory:	C:\Users\user\Documents\Скрябин Роман\startup\startup
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe,
+
+ВНЕЗАПНО: std::terminate(): Неперехваченное исключение в функции main() или в деструкторе, или другая фатальная ошибка C++. 
+
+Объект исключения C++: std::out_of_range, what(): "basic_string::erase", его адрес 0x03C77558.
+
+Используйте try/catch блоки, перехватывайте catch (...), проверяйте вызовы виртуальных функций, разбирайтесь, в чем дело.
+
+С помощью std::set_terminate() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400], Instance: 0x005162FC (32-bit), Flags: CMdRe0, Thread: 0x2EBC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00411474 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: _txOnTerminate() at c:/codeblocks/codeblocks/mingw/include/txlib.h (11016)
+# 1 0x00449747 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: __cxxabiv1::__terminate()
+
+# 2 0x00454BB8 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: _M_check() at c:/codeblocks/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 3 0x00484E5E in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: erase() at c:/codeblocks/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 4 0x0044CEF7 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: textdraw() at c:/codeblocks/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 5 0x0042CDE9 in C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe: main() at C:/Users/user/Documents/Скрябин Роман/startup/startup/main.cpp (556):
+
+    554:         string s111;
+    555:         if (textdrw==1 && txMouseX()>=300&& txMouseY()>=10&& txMouseY()<1000 && txMouseX()<=1900 && txMouseButtons()==1)
+=>  556:          {t1.textdraw();
+    557:           qt.push_back(t1); textdrw=0;}
+    558: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Mar 25 2023 17:26:47, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Mar 25 2023 17:27:02
+
+Run file:	C:\Users\user\Documents\Скрябин Роман\startup\startup\main.exe
+Directory:	C:\Users\user\Documents\Скрябин Роман\startup\startup
+
+--------------------------------------------------

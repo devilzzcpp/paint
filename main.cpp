@@ -318,9 +318,12 @@ struct  colormenuCvet
 COLORREF cvt2;} ;
 
 colormenuCvet colormenu()
-{colormenuCvet x;
+{
+colormenuCvet x;
+
 x.cvt1=TX_TRANSPARENT;
 x.cvt2=TX_TRANSPARENT;
+
     button white(30,220,50,50);
         white.SetColor(TX_WHITE);
         white.drawButton();
@@ -395,24 +398,66 @@ x.cvt2=TX_TRANSPARENT;
             x.cvt2=TX_BLUE;
             }
 
+
+            button green(170,290,50,50);
+        green.SetColor(TX_GREEN);
+        green.drawButton();
+
+          if (green.click())
+            {
+            x.cvt1=TX_GREEN;
+            }
+
+            if (green.clickr())
+            {
+            x.cvt2=TX_GREEN;
+            }
+
+            button gray(30,360,50,50);
+        gray.SetColor(TX_GRAY);
+        gray.drawButton();
+
+          if (gray.click())
+            {
+            x.cvt1=TX_GRAY;
+            }
+
+            if (gray.clickr())
+            {
+             x.cvt2=TX_GRAY;
+            }
+
+             button pink(100,360,50,50);
+        pink.SetColor(TX_PINK);
+        pink.drawButton();
+
+          if (pink.click())
+            {
+            x.cvt1=TX_PINK;
+            }
+
+            if (pink.clickr())
+            {
+             x.cvt2=TX_PINK;
+            }
+
+            button cyan(170,360,50,50);
+        cyan.SetColor(TX_CYAN);
+        cyan.drawButton();
+
+          if (cyan.click())
+            {
+            x.cvt1=TX_CYAN;
+            }
+
+            if (cyan.clickr())
+            {
+             x.cvt2=TX_CYAN;
+            }
+
+
             return x;
-/*
-            button lightgray(60,180,30,30);
-        lightgray.SetColor(TX_LIGHTGRAY);
-        lightgray.drawButton();
 
-          if (lightgray.click())
-            {
-            return TX_LIGHTGRAY;
-            }
-
-            if (lightgray.clickr())
-            {
-          //cvetobv=TX_LIGHTGRAY;
-            return TX_LIGHTGRAY;
-            }
-*/
-           // return TX_TRANSPARENT;
 
 }
 
@@ -447,14 +492,14 @@ int main()
     txCreateWindow (1920, 1050);
     txSetColor (TX_WHITE);
 
-     paintmenu menu(200,300,2,3); //меню
-     button b1(30, 80, 50, 50); //квадрат
+     paintmenu menu(200,300,2,3); //меню типо управление самолетом
+     button b1(30, 80, 50, 50); //квадрат(кубоид)
      b1.PicterAdd("нормквадрат.bmp",50,50);
 
-     button b2(100, 80, 50, 50); //круг
+     button b2(100, 80, 50, 50); //круг (михаил)
      b2.PicterAdd("нормкруг.bmp",50,50);
 
-     button b3(170, 80, 50, 50); //шестиугольник
+     button b3(170, 80, 50, 50); //шестиугольник да мен 666
      b3.PicterAdd("Ў≈—“»”√ќЋ№Ќ» „“ќ.bmp",50,50);
 
      button b4(30, 900, 50, 50);
@@ -467,7 +512,7 @@ int main()
      b6.PicterAdd("ткст.bmp",50,50);
 
     sizeSlider slider(20,30,25,30);
-    print sq;//рисовалка
+    print sq;//рисовалка щит
     text t1;
     int currentObject=2;//дл€ выбора фигур
     int obvodka;
